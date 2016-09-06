@@ -1,4 +1,5 @@
 import os
+import os.path
 import time
 import cPickle
 import datetime
@@ -11,6 +12,8 @@ import sqlite3
 
 # Obtain the flask app object
 app = flask.Flask(__name__)
+
+DATABASE_NAME = "pega_ds.db"
 
 #Advertising Data Table Columns
 TABLE_ADVERTISING_DATA ="adsData"
@@ -49,6 +52,14 @@ AGE_LIST = ("0 ~ 2", "4 ~ 6", "8 ~ 12", "13 ~ 17", "18 ~ 24", "25 ~ 34", "35 ~ 4
 
 @app.route('/')
 def index():
+    if os.path.isfile(DATABASE_NAME):
+        print "Database exists"
+    else:
+        print "Database not exists!"
+        return flask.render_template(
+            'index.html', has_data=False
+        )
+
     person_counting_data = fetch_latest_person_counting_data()
     ads_data = None
     if person_counting_data is None:

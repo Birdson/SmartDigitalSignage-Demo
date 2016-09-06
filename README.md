@@ -1,4 +1,4 @@
-# SmartDigitalSignage
+# Smart Digital Signage Web Demo
 
 ## Requirements
 1. Install Pip with apt-get
