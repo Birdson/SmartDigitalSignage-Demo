@@ -9,7 +9,6 @@ import tornado.httpserver
 
 import urllib
 import sqlite3
-import zipfile
 
 # Obtain the flask app object
 app = flask.Flask(__name__)
@@ -53,13 +52,6 @@ AGE_LIST = ("0 ~ 2", "4 ~ 6", "8 ~ 12", "13 ~ 17", "18 ~ 24", "25 ~ 34", "35 ~ 4
 
 @app.route('/')
 def index():
-
-    fh = open('./databases/database.zip', 'rb')
-    z = zipfile.ZipFile(fh)
-    for name in z.namelist():
-        z.extract('pega_ds.db', 'databases')
-    fh.close()
-
     if os.path.isfile(DATABASE_NAME):
         print "Database exists"
     else:
