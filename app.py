@@ -57,14 +57,14 @@ def index():
     else:
         print "Database not exists!"
         return flask.render_template(
-            'index.html', has_data=False
+            'index.html', has_result=False
         )
 
     person_counting_data = fetch_latest_person_counting_data()
     ads_data = None
     if person_counting_data is None:
         return flask.render_template(
-            'index.html', has_data=False
+            'index.html', has_result=False
         )
     else:
         ads_id = person_counting_data[1]
@@ -75,7 +75,7 @@ def index():
 
     if (viewing_datas is None) or (len(viewing_datas) == 0):
         return flask.render_template(
-            'index.html', has_data=False,
+            'index.html', has_result=True, has_viewing_data=False,
             ads_data=ads_data,
             person_counting_data=person_counting_data
         )
@@ -91,7 +91,7 @@ def index():
             print personal_datas
 
         return flask.render_template(
-            'index.html', has_data=True,
+            'index.html', has_result=True, has_viewing_data=False,
             ads_data=ads_data,
             person_counting_data=person_counting_data,
             viewing_datas=viewing_datas,
