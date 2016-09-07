@@ -13,7 +13,7 @@ import sqlite3
 # Obtain the flask app object
 app = flask.Flask(__name__)
 
-DATABASE_NAME = "databases/pega_ds.db"
+DATABASE_NAME = "./databases/pega_ds.db"
 
 #Advertising Data Table Columns
 TABLE_ADVERTISING_DATA ="adsData"
@@ -73,7 +73,7 @@ def index():
 
     viewing_datas = fetch_latest_viewing_datas()
 
-    if viewing_datas is None:
+    if (viewing_datas is None) or (len(viewing_datas) == 0):
         return flask.render_template(
             'index.html', has_data=False,
             ads_data=ads_data,
@@ -102,7 +102,7 @@ def index():
 def fetch_latest_viewing_datas():
     viewing_datas = None
     try:
-        connection = sqlite3.connect('pega_ds.db')
+        connection = sqlite3.connect(DATABASE_NAME)
         c = connection.cursor()
 
         c.execute("""
@@ -120,7 +120,7 @@ def fetch_latest_viewing_datas():
 def fetch_latest_person_counting_data():
     counting_data = None
     try:
-        connection = sqlite3.connect('pega_ds.db')
+        connection = sqlite3.connect(DATABASE_NAME)
         c = connection.cursor()
 
         c.execute("""
@@ -139,7 +139,7 @@ def fetch_latest_person_counting_data():
 def fetch_ads_data(ads_id):
     ads_data = None
     try:
-        connection = sqlite3.connect('pega_ds.db')
+        connection = sqlite3.connect(DATABASE_NAME)
         c = connection.cursor()
 
         query = """
@@ -162,7 +162,7 @@ def fetch_ads_data(ads_id):
 def fetch_personal_data(personal_id):
     personal_data = None
     try:
-        connection = sqlite3.connect('pega_ds.db')
+        connection = sqlite3.connect(DATABASE_NAME)
         c = connection.cursor()
 
         query = """
