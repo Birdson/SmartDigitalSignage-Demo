@@ -91,7 +91,7 @@ def index():
             print personal_datas
 
         return flask.render_template(
-            'index.html', has_result=True, has_viewing_data=False,
+            'index.html', has_result=True, has_viewing_data=True,
             ads_data=ads_data,
             person_counting_data=person_counting_data,
             viewing_datas=viewing_datas,
