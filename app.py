@@ -110,7 +110,6 @@ def fetch_latest_viewing_datas(ads_id):
         WHERE viewing_date = (SELECT MAX(viewing_date) FROM viewingData) 
         and %s=%d
         """ % (KEY_VIEWING_ADS_ID, ads_id)
-        print query
         c.execute(query)
 
         viewing_datas = c.fetchall()
