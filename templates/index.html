@@ -25,15 +25,13 @@
       {% else %}
       <h2 align="center"><b>Advertising is "{{ ads_data[1]}}"</b></h2>
       <h4 align="center"><i>Total Playback Times is <b>{{ ads_data[3]}}</b> (during {{ ads_data[4]}} ~ {{ ads_data[5]}})</i></h4>
-      <br>
-      <h3 align="center"><i>Last Updated Date: {{ person_counting_data[3]}}</i></h3>
-      <h4 align="center"><i>People Counting is <b>{{ person_counting_data[2]}}</b> for last playback</i></h4>
-      <br>
+      <br><br>
+      <h3 align="center"><i>People Counting is <b>{{ person_counting_data[2]}}</b> for last playback at  <b>{{ person_counting_data[3]}}</b></i></h3>
       <div class="media">
         <a class="media-left" href="#"><img class="media-object" src="{{ url_for('static', filename='icons/device.png') }}" alt="Smart Digital Signage"></a>
         <div class="media-body" align="left">
-          <h2 class="media-heading" align="center"><i>Viewing Person List</i></h2>
           {% if has_viewing_data %}
+          <h3 class="media-heading" align="center"><i>Viewing Person at  <b>{{ viewing_datas[0][4]}}</b></i></h3>
           <ul id="rig">
           {% for personal_data in personal_datas %}
           <li>
@@ -53,7 +51,7 @@
         </div>
       </div>
       {% endif %}
-      <br><br><br><br>
+      <br><br><br><br><br><br><br>
 
     </div>
 
