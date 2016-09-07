@@ -71,7 +71,7 @@ def index():
         ads_data = fetch_ads_data(ads_id)
         print ads_data
 
-    viewing_datas = fetch_latest_viewing_datas()
+    viewing_datas = fetch_latest_viewing_datas(ads_id)
 
     if (viewing_datas is None) or (len(viewing_datas) == 0):
         return flask.render_template(
@@ -99,15 +99,19 @@ def index():
         )
 
 
-def fetch_latest_viewing_datas():
+def fetch_latest_viewing_datas(ads_id):
     viewing_datas = None
     try:
         connection = sqlite3.connect(DATABASE_NAME)
         c = connection.cursor()
 
-        c.execute("""
-        SELECT * FROM viewingData WHERE viewing_date = (SELECT MAX(viewing_date) FROM viewingData)
-        """)
+        query = """
+        SELECT * FROM viewingData 
+        WHERE viewing_date = (SELECT MAX(viewing_date) FROM viewingData) 
+        and %s=%d
+        """ % (KEY_VIEWING_ADS_ID, ads_id)
+        print query
+        c.execute(query)
 
         viewing_datas = c.fetchall()
 
