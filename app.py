@@ -13,7 +13,7 @@ import sqlite3
 # Obtain the flask app object
 app = flask.Flask(__name__)
 
-DATABASE_NAME = "./databases/pega_ds.db"
+DATABASE_NAME = "./databases/pega_ds.db-bak"
 
 #Advertising Data Table Columns
 TABLE_ADVERTISING_DATA ="adsData"
