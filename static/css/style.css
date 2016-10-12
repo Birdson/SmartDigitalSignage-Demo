@@ -182,12 +182,12 @@ div {
     width:100%;
     text-align:center;
     text-transform:capitalize;
-    font-size:12px;
-    font-weight:bold;
+    font-size:13px;
+    font-weight:bolder;
     font-family: 'Oswald', sans-serif;
     font-weight:normal!important;
     top:40%;
-    color:white;
+    color:Black;
     opacity:0;
     filter:alpha(opacity=0);/*For older IE*/
     transform:translateY(-20px);
